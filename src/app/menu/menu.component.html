@@ -1,0 +1,6 @@
+<div class="menu-grid">
+  @for (item of menu(); track item.name) {
+  <app-product-card [product]="item" (add)="addItem.emit(item)">
+  </app-product-card>
+  }
+</div>
