@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { MenuComponent } from './menu/menu.component';
+import { CartComponent } from './cart/cart.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [MenuComponent, CartComponent],
 })
 export class AppComponent {
-  title = 'lunch-order';
+  cart = signal<{ name: string; price: number }[]>([]);
+
+  addToCart(item: { name: string; price: number }) {
+    this.cart.update((items) => [...items, item]);
+  }
 }
